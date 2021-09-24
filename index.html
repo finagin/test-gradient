@@ -1,0 +1,43 @@
+<html lang="en">
+<head>
+    <title>test</title>
+    <meta name="theme-color" content="#3f2caf" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#3f2caf" media="(prefers-color-scheme: dark)">
+</head>
+<body style="background-color: #3f2caf">
+<script src="https://cdn.jsdelivr.net/npm/javascript-color-gradient@1.3.2"></script>
+<script>
+    const colorGradient = new Gradient();
+
+    const color1 = "#3F2CAF";
+    const color2 = "#e9446a";
+    const color3 = "#edc988";
+    const color4 = "#607D8B";
+
+    colorGradient.setMidpoint(1000);
+
+    colorGradient.setGradient(color1, color2, color3, color4);
+
+    const length = colorGradient.getArray().length;
+    let index = 1;
+
+    setInterval(function () {
+        if (index > length) {
+            index = 1;
+        }
+
+        let meta = document.getElementsByTagName('meta');
+        for (let item in meta) {
+            meta[item].content = colorGradient.getColor(index);
+        }
+
+        let body = document.getElementsByTagName('body');
+        for (let itemIndex = 0; itemIndex < body.length; itemIndex++) {
+            body[itemIndex].style.backgroundColor = colorGradient.getColor(index);
+        }
+
+        index++;
+    }, 50);
+</script>
+</body>
+</html>
